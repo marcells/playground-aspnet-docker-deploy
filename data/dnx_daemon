@@ -1,5 +1,5 @@
 #!/bin/bash
-# invoke with arguments to pass to k (e.g. ./k_daemon web)
+# invoke with arguments to pass to dnx (e.g. ./dnx_daemon web)
 
 trap 'my_exit; exit' SIGINT SIGQUIT
 
@@ -52,7 +52,7 @@ wait_for_kruntime()
 }
 
 # start KRuntime using fifo as stdin
-k $@ <&3 &
+dnx $@ <&3 &
 
 # capture child pid
 pid=$!

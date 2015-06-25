@@ -1,11 +1,12 @@
-FROM microsoft/aspnet
+FROM microsoft/aspnet:1.0.0-beta4
 
 COPY ./data /app
 WORKDIR /app
-RUN ["kpm", "restore"]
+
+RUN ["dnu", "restore"]
 
 RUN apt-get install -y procps
-RUN chmod a+x /app/k_daemon
+RUN chmod a+x /app/dnx_daemon
 
 EXPOSE 5004
-ENTRYPOINT ["/app/k_daemon", "kestrel"]
+ENTRYPOINT ["/app/dnx_daemon", ".", "kestrel"]
